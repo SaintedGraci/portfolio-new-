@@ -1,14 +1,16 @@
 import React from 'react';
+import cebuAnalysis from '../assets/cebu-analysis.png';
 
 const AnalyticsSection = () => {
   const analyticsProjects = [
-    // Placeholder structure for future projects
     {
-      title: "Coming Soon",
-      tags: ["Data Analytics", "Business Intelligence"],
-      description: "Exciting data analytics and business intelligence projects in development",
+      title: "Cebu Big 3 Cities Analysis",
+      tags: ["Data Analytics", "Excel", "Dashboard", "Financial Analysis"],
+      description: "Household income & expenditure analysis across Cebu's major cities: Lapu-Lapu, Mandaue, and Cebu City",
+      image: cebuAnalysis,
       color: "border-pink-500",
-      isPlaceholder: true
+      github: ["#"], // Add your GitHub link here when you upload the project
+      isPlaceholder: false
     }
   ];
 
