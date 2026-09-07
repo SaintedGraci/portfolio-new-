@@ -13,9 +13,25 @@ const Header = () => {
   const navLinks = [
     { name: 'About', path: '/about' },
     { name: 'Projects', path: '/#projects' },
+    { name: 'Analytics', path: '/#analytics' },
     { name: 'Experience', path: '/experience' },
     { name: 'Contact', path: '/#contact' },
   ];
+
+  const handleNavClick = (e, path) => {
+    if (path.startsWith('/#')) {
+      e.preventDefault();
+      const id = path.substring(2);
+      if (window.location.pathname !== '/') {
+        window.location.href = path;
+      } else {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
 
   return (
     <header 
@@ -34,13 +50,24 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-lime-400 transition-colors"
-            >
-              {link.name}
-            </Link>
+            link.path.startsWith('/') && !link.path.startsWith('/#') ? (
+              <Link
+                key={link.name}
+                to={link.path}
+                className="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-lime-400 transition-colors"
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <a
+                key={link.name}
+                href={link.path}
+                onClick={(e) => handleNavClick(e, link.path)}
+                className="text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-lime-400 transition-colors cursor-pointer"
+              >
+                {link.name}
+              </a>
+            )
           ))}
           
           <a 
